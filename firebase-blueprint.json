@@ -1,0 +1,98 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Google-authenticated parent profile stored in Firestore.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 150 },
+        "email": { "type": "string", "maxLength": 200 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "providerId": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "lastLoginAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "A soft plush storytelling toy or bundle in the Katha Kraft's marketplace.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "characterId": { "type": "string", "maxLength": 64 },
+        "characterName": { "type": "string", "maxLength": 100 },
+        "price": { "type": "number" },
+        "category": { "type": "string", "maxLength": 100 },
+        "ageRange": { "type": "string", "maxLength": 50 },
+        "stock": { "type": "number" }
+      },
+      "required": ["id", "name", "price", "stock"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order for Katha Kraft's soft plush toys.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "customerName": { "type": "string", "maxLength": 200 },
+        "email": { "type": "string", "maxLength": 200 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "address": { "type": "string", "maxLength": 500 },
+        "city": { "type": "string", "maxLength": 100 },
+        "pincode": { "type": "string", "maxLength": 20 },
+        "total": { "type": "number" },
+        "status": { "type": "string", "maxLength": 50 },
+        "paymentMethod": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["id", "userId", "customerName", "email", "total", "status"]
+    },
+    "UserPreference": {
+      "title": "UserPreference",
+      "description": "Child discovery preferences and encouraged values linked to Google Auth user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "childAge": { "type": "string", "maxLength": 50 },
+        "onboardingCompleted": { "type": "boolean" },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId"]
+    },
+    "WishlistItem": {
+      "title": "WishlistItem",
+      "description": "Saved soft toys in Google-authenticated user's wishlist.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Google-authenticated user profiles."
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Storefront catalog of storytelling soft toys and bundles."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Placed orders and delivery fulfillment receipts linked to userId."
+    },
+    "/user_preferences/{userId}": {
+      "schema": "UserPreference",
+      "description": "User's child age and value preferences."
+    },
+    "/wishlists/{userId}": {
+      "schema": "WishlistItem",
+      "description": "Saved wishlist items per authenticated user."
+    }
+  }
+}

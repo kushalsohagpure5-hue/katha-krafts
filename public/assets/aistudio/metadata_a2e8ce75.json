@@ -1,0 +1,6 @@
+{
+  "name": "KathaKrafts — Indian Storytelling & Toy Marketplace",
+  "description": "Premium Indian cultural storytelling and educational toy marketplace for children aged 3–6. Every character has a story. Every story carries a value.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
